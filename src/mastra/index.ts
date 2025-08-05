@@ -4,6 +4,7 @@ import { PinoLogger } from '@mastra/loggers';
 import { LibSQLStore } from '@mastra/libsql';
 import { weatherWorkflow } from './workflows/weather-workflow';
 import { weatherAgent } from './agents/weather-agent';
+import { vnextNetwork } from './network';
 
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
@@ -12,6 +13,9 @@ export const mastra = new Mastra({
     // stores telemetry, evals, ... into memory storage, if it needs to persist, change to file:../mastra.db
     url: ":memory:",
   }),
+  vnext_networks: {
+    vnextNetwork
+  },
   logger: new PinoLogger({
     name: 'Mastra',
     level: 'info',
